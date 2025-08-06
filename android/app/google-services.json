@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347870286131",
+    "project_id": "relienquiry",
+    "storage_bucket": "relienquiry.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347870286131:android:cd3717ba6c763709ed2e46",
+        "android_client_info": {
+          "package_name": "com.relietech.relie_nquiry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWm8Wpz_M6BEpY1YqwOw84bbI3LFz-8mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
