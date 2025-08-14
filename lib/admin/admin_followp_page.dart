@@ -488,7 +488,7 @@ class _AdminFollowupPageState extends State<AdminFollowupPage> {
                   const SizedBox(width: 12),
                   _buildFilterChip('Product', selectedFilter == 'Product'),
                   const SizedBox(width: 12),
-                  _buildFilterChip('Schedule', selectedFilter == 'Schedule'),
+                  _buildFilterChip('Booking', selectedFilter == 'Booking'),
                   // const SizedBox(width: 12),
                   // _buildFilterChip('Others', selectedFilter == 'Others'),
                 ],
@@ -554,6 +554,15 @@ class _AdminFollowupPageState extends State<AdminFollowupPage> {
                           color: AppColors.appColor,
                         ),
                       ),
+                      if (snapchat['form_type'] == 'Schedule')
+                        Text(
+                        snapchat["others_title"] ?? '',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.appColor,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -567,11 +576,11 @@ class _AdminFollowupPageState extends State<AdminFollowupPage> {
                           ? "Job Role: ${snapchat['jobName']}" ?? ''
                           : snapchat['isJobExperienced'] == true
                           ? "Job Role: ${snapchat['jobName']}" ?? ''
-                          : 'No Title',
+                          : '',
                     ),
                   if (snapchat['form_type'] == 'Product')
                     Text('Product: ${snapchat['product_name'] ?? ''}'),
-                  if (snapchat['form_type'] == 'Schedule')
+                  if (snapchat['form_type'] == 'Booking')
                     Text('Event Name: ${snapchat['event_name'] ?? ''}'),
                   // if (snapchat['form_type'] == 'Others')
                   //   Text('Title: ${snapchat['others_title'] ?? ''}'),
@@ -637,7 +646,7 @@ class _AdminFollowupPageState extends State<AdminFollowupPage> {
         return const Color(0xFFf9b401);
       case 'Product':
         return const Color(0xFF622fa4);
-      case 'Schedule':
+      case 'Booking':
         return const Color(0xFFf8681a);
       default:
         return const Color(0xFF3754db);

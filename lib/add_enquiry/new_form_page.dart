@@ -24,8 +24,8 @@ class _NewFormPageState extends State<NewFormPage> {
   final List<String> enquiryTypes = [
     'Service',
     'Product',
-    'Schedule',
-    //"Others",
+    'Booking',
+    "Schedule",
   ];
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -74,6 +74,7 @@ class _NewFormPageState extends State<NewFormPage> {
   final TextEditingController jobFresherSkill = TextEditingController();
   final TextEditingController jobYearExperience = TextEditingController();
   final TextEditingController jobWorkExperience = TextEditingController();
+  final TextEditingController othersController = TextEditingController();
 
   bool internship = false;
   bool training = false;
@@ -165,6 +166,21 @@ class _NewFormPageState extends State<NewFormPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (selectedEnquiry == 'Schedule')
+                      AppTextFields.textFormFieldHeading(
+                        context: context,
+                        controller: othersController,
+                        headingText: "Title *",
+                        hintText: "Enter title",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter title";
+                          }
+                          return null;
+                        },
+                        inputFormatters: [UpperCaseTextFormatter()],
+                      ),
+
                       // if (selectedEnquiry == 'Others')
                       //   AppTextFields.textFormFieldHeading(
                       //     context: context,
@@ -287,7 +303,7 @@ class _NewFormPageState extends State<NewFormPage> {
                             ),
                           ],
                         ),
-                      if (selectedEnquiry == 'Schedule')
+                      if (selectedEnquiry == 'Booking')
                         Column(
                           children: [
                             AppTextFields.textFormFieldHeading(
@@ -406,7 +422,7 @@ class _NewFormPageState extends State<NewFormPage> {
                                       .trim(),
 
                                   //serviceTitle: serviceTitleController.text.trim(),
-                                  // otherTitle: othersController.text.trim(),
+                                  otherTitle: othersController.text.trim(),
                                   productName: productNameController.text
                                       .trim(),
                                   productPrice: productPriceController.text
@@ -436,7 +452,7 @@ class _NewFormPageState extends State<NewFormPage> {
                                   addressController.clear();
                                   emailController.clear();
                                   collageController.clear();
-                                  // othersController.clear();
+                                  othersController.clear();
                                   productNameController.clear();
                                   productPriceController.clear();
 
@@ -610,6 +626,7 @@ class _NewFormPageState extends State<NewFormPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (selectedEnquiry != 'Schedule')
         AppTextFields.textFormFieldHeading(
           context: context,
           controller: nameController,
@@ -623,8 +640,8 @@ class _NewFormPageState extends State<NewFormPage> {
           inputFormatters: [UpperCaseTextFormatter()],
           hintText: "Enter name",
         ),
-        const SizedBox(height: 20),
-
+        if (selectedEnquiry != 'Schedule') SizedBox(height: 20),
+        if (selectedEnquiry != 'Schedule')
         AppTextFields.textFormFieldHeading(
           context: context,
           controller: mobileController,
@@ -644,6 +661,8 @@ class _NewFormPageState extends State<NewFormPage> {
         ),
 
         //const SizedBox(height: 20),
+
+        if (selectedEnquiry != 'Schedule')
         AppTextFields.textFormFieldHeading(
           context: context,
           controller: emailController,
@@ -656,8 +675,8 @@ class _NewFormPageState extends State<NewFormPage> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
-        AppTextFields.textFormFieldHeading(
+        if (selectedEnquiry != 'Schedule')SizedBox(height: 20),
+        if (selectedEnquiry != 'Schedule') AppTextFields.textFormFieldHeading(
           context: context,
           controller: collageController,
           headingText: "Collage Name *",
@@ -669,8 +688,8 @@ class _NewFormPageState extends State<NewFormPage> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
-        AppTextFields.textFormFieldHeading(
+        if (selectedEnquiry != 'Schedule') SizedBox(height: 20),
+        if (selectedEnquiry != 'Schedule')AppTextFields.textFormFieldHeading(
           context: context,
           controller: addressController,
           headingText: "Address *",
@@ -683,7 +702,7 @@ class _NewFormPageState extends State<NewFormPage> {
           },
           maxLines: 3,
         ),
-        const SizedBox(height: 20),
+        if (selectedEnquiry != 'Schedule') SizedBox(height: 20),
 
         AppTextFields.textFormFieldHeading(
           context: context,

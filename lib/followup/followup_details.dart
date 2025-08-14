@@ -612,7 +612,7 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
         return const Color(0xFFf9b401);
       case 'Product':
         return const Color(0xFF622fa4);
-      case 'Schedule':
+      case 'Booking':
         return const Color(0xFFf8681a);
       default:
         return const Color(0xFF3754db);
@@ -729,7 +729,8 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
                           horizontal: 20,
                           vertical: 20,
                         ),
-                        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -791,7 +792,7 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
                                   ? "Job: Fresher" ?? ''
                                   : widget.snapshot['isJobExperienced'] == true
                                   ? "Job: Experienced" ?? ''
-                                  : 'No Title',
+                                  : '',
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -820,11 +821,12 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
                                     : widget.snapshot['isJobExperienced'] ==
                                           true
                                     ? "${widget.snapshot['jobName']}" ?? ''
-                                    : 'No Title',
+                                    : '',
                                 // "Service Title",
                                 // widget.snapshot['service_title'] ?? '',
                               ),
-                            ] else if (widget.snapshot['form_type'] ==
+                            ]
+                            else if (widget.snapshot['form_type'] ==
                                 'Product') ...[
                               buildLabelRow(
                                 "Product Name",
@@ -839,7 +841,7 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
                                 "${widget.snapshot['product_price'] ?? ''}",
                               ),
                             ] else if (widget.snapshot['form_type'] ==
-                                'Schedule') ...[
+                                'Booking') ...[
                               buildLabelRow(
                                 "Event Name",
                                 widget.snapshot['event_name'] ?? '',
@@ -848,18 +850,22 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
                                 "Event Date",
                                 "${DateFormat('dd/MM/yyyy').format((widget.snapshot["event_date"] as Timestamp).toDate())}",
                               ),
+                            ]
+
+                            else if (widget.snapshot['form_type'] ==
+                                'Schedule') ...[
+                              buildLabelRow(
+                                "Title",
+                                widget.snapshot['others_title'] ?? '',
+                              ),
                             ],
-                            // else if (widget.snapshot['form_type'] ==
-                            //     'Others') ...[
-                            //   buildLabelRow(
-                            //     "Title",
-                            //     widget.snapshot['others_title'] ?? '',
-                            //   ),
-                            // ],
+                            if (widget.snapshot['form_type'] !=
+                                'Schedule')
                             buildLabelRow(
                               "Mobile No",
                               widget.snapshot?["mobile"] ?? '',
-                            ),
+                            ),   if (widget.snapshot['form_type'] !=
+                                'Schedule')
                             buildLabelRow(
                               "Address",
                               widget.snapshot?["address"] ?? '',
@@ -997,15 +1003,17 @@ class _FollowDetailsPageState extends State<FollowDetailsPage> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            AppFunctions.launchPhone(widget.snapshot?["mobile"]);
-          },
-          elevation: 5,
-          shape: const CircleBorder(),
-          backgroundColor: Colors.green,
-          child: Icon(Icons.phone, color: Colors.white),
-        ),
+        floatingActionButton: widget.snapshot?['form_type'] == 'Schedule'
+            ? null // ToDo na FAB kaamikama irukum
+            : FloatingActionButton(
+                onPressed: () {
+                  AppFunctions.launchPhone(widget.snapshot?["mobile"]);
+                },
+                elevation: 5,
+                shape: const CircleBorder(),
+                backgroundColor: Colors.green,
+                child: Icon(Icons.phone, color: Colors.white),
+              ),
       ),
     );
   }

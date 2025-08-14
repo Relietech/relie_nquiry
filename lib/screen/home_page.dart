@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:relie_nquiry/constants/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../constants/app_colors.dart';
 import '../routes/app_routes.dart';
 
@@ -30,9 +29,8 @@ class _HomePageState extends State<HomePage> {
 
   int service = 0;
   int product = 0;
-  int schedule = 0;
-  int other = 0;
-
+  int booking = 0;
+  int Schedule = 0;
   @override
   void initState() {
     super.initState();
@@ -330,7 +328,7 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Schedules',
+                                      'ToDo',
                                       style: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -936,10 +934,10 @@ class _HomePageState extends State<HomePage> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              if (schedule != 0) {
+                              if (booking != 0) {
                                 Get.toNamed(
                                   Routes.statusPage,
-                                  arguments: "Schedule",
+                                  arguments: "Booking",
                                 );
                               }
                             },
@@ -981,7 +979,7 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                          "Schedule",
+                                          "Booking",
                                           style: TextStyle(
                                             color: Colors.grey.shade700,
                                             fontWeight: FontWeight.bold,
@@ -1002,7 +1000,7 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               .where(
                                                 'form_type',
-                                                isEqualTo: "Schedule",
+                                                isEqualTo: "Booking",
                                               )
                                               .where(
                                                 'created_at',
@@ -1050,7 +1048,7 @@ class _HomePageState extends State<HomePage> {
                                               );
                                             }
 
-                                            schedule =
+                                            booking =
                                                 snapshot.data!.docs.length;
 
                                             return Container(
@@ -1064,7 +1062,7 @@ class _HomePageState extends State<HomePage> {
                                                     BorderRadius.circular(6),
                                               ),
                                               child: Text(
-                                                schedule.toString(),
+                                                booking.toString(),
                                                 style: TextStyle(
                                                   color: AppColors.appColor,
                                                   fontSize: 16,
@@ -1251,7 +1249,7 @@ Widget cardS({required snapchat}) {
                         ? Color(0xFFf9b401)
                         : snapchat["form_type"] == "Product"
                         ? Color(0xFF622fa4)
-                        : snapchat["form_type"] == "Schedule"
+                        : snapchat["form_type"] == "Booking"
                         ? Color(0xFFf8681a)
                         : Color(0xFF3754db),
                     borderRadius: BorderRadius.circular(6),
@@ -1265,6 +1263,15 @@ Widget cardS({required snapchat}) {
                     ),
                   ),
                 ),
+                if (snapchat['form_type'] == 'Schedule')Text(
+                  snapchat["others_title"] ?? '',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.appColor,
+                  ),
+                ),
+                if (snapchat['form_type'] != 'Schedule')
                 Text(
                   snapchat["name"],
                   style: TextStyle(
@@ -1321,7 +1328,7 @@ Widget cardS({required snapchat}) {
                   ),
                 ],
               ),
-            ] else if (snapchat['form_type'] == 'Schedule') ...[
+            ] else if (snapchat['form_type'] == 'Booking') ...[
               Row(
                 children: [
                   const Text(
@@ -1341,7 +1348,25 @@ Widget cardS({required snapchat}) {
                   ),
                 ],
               ),
-            ],
+            ] else if (snapchat['form_type'] == 'Schedule')Row(
+  children: [
+  const Text(
+  'Description: ',
+  style: TextStyle(fontSize: 16, color: Colors.black54),
+  ),
+  Expanded(
+  child: Text(
+  snapchat["followup_description"] ?? '',
+  style: const TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,
+  color: Colors.black87,
+  ),
+  overflow: TextOverflow.ellipsis,
+  ),
+  ),
+  ],
+  ),
             // else if (snapchat['form_type'] == 'Others') ...[
             //   Row(
             //     children: [

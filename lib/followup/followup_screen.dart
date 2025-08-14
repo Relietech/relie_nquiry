@@ -229,95 +229,58 @@ class _FollowupScreenState extends State<FollowupScreen> {
               children: [
                 Text('Follow-up', style: AppTextStyles.appBarWhite21bold),
 
-                InkWell(
+                GestureDetector(
                   onTap: () {
-                    Get.toNamed(Routes.scheduleFormPage);
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.99),
-                          borderRadius: BorderRadius.all(Radius.circular(60)),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: AppColors.appColor,
-                              size: 20,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              "Schedule",
-                              style: TextStyle(
-                                color: AppColors.appColor,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () {
-                          if (isDateSelected) {
-                            // If already selected, clear selection
-                            setState(() {
-                              isDateSelected = false;
-                              startDate = null;
-                              endDate = null;
-                            });
-                          } else {
-                            showCustomDateRangePicker(
-                              context,
-                              dismissible: true,
-                              minimumDate: DateTime(2022),
-                              maximumDate: DateTime.now(),
-                              endDate: endDate,
-                              startDate: startDate,
-                              backgroundColor: Colors.white,
-                              primaryColor: AppColors.appColor,
-                              onApplyClick: (start, end) {
-                                setState(() {
-                                  startDate = start;
-                                  endDate = end;
-                                  isDateSelected = true;
-                                });
-                              },
-                              onCancelClick: () {
-                                setState(() {
-                                  startDate = null;
-                                  endDate = null;
-                                  isDateSelected = false;
-                                });
-                              },
-                            );
-                          }
+                    if (isDateSelected) {
+                      // If already selected, clear selection
+                      setState(() {
+                        isDateSelected = false;
+                        startDate = null;
+                        endDate = null;
+                      });
+                    } else {
+                      showCustomDateRangePicker(
+                        context,
+                        dismissible: true,
+                        minimumDate: DateTime(2022),
+                        maximumDate: DateTime.now(),
+                        endDate: endDate,
+                        startDate: startDate,
+                        backgroundColor: Colors.white,
+                        primaryColor: AppColors.appColor,
+                        onApplyClick: (start, end) {
+                          setState(() {
+                            startDate = start;
+                            endDate = end;
+                            isDateSelected = true;
+                          });
                         },
+                        onCancelClick: () {
+                          setState(() {
+                            startDate = null;
+                            endDate = null;
+                            isDateSelected = false;
+                          });
+                        },
+                      );
+                    }
+                  },
 
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Icon(
-                            isDateSelected ? Icons.close : Icons.calendar_today,
-                            size: 18,
-                            color: isDateSelected
-                                ? Colors.red
-                                : AppColors.appColor,
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Icon(
+                      isDateSelected ? Icons.close : Icons.calendar_today,
+                      size: 18,
+                      color: isDateSelected
+                          ? Colors.red
+                          : AppColors.appColor,
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -382,7 +345,7 @@ class _FollowupScreenState extends State<FollowupScreen> {
                   const SizedBox(width: 12),
                   _buildFilterChip('Product', selectedFilter == 'Product'),
                   const SizedBox(width: 12),
-                  _buildFilterChip('Schedule', selectedFilter == 'Schedule'),
+                  _buildFilterChip('Booking', selectedFilter == 'Booking'),
                   // const SizedBox(width: 12),
                   // _buildFilterChip('Others', selectedFilter == 'Others'),
                 ],
@@ -447,6 +410,13 @@ class _FollowupScreenState extends State<FollowupScreen> {
                           fontWeight: FontWeight.w600,
                           color: AppColors.appColor,
                         ),
+                      ), if (snapchat['form_type'] == 'Schedule')Text(
+                        snapchat["others_title"] ?? '',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.appColor,
+                        ),
                       ),
                     ],
                   ),
@@ -461,11 +431,11 @@ class _FollowupScreenState extends State<FollowupScreen> {
                           ? "Job Role: ${snapchat['jobName']}" ?? ''
                           : snapchat['isJobExperienced'] == true
                           ? "Job Role: ${snapchat['jobName']}" ?? ''
-                          : 'No Title',
+                          : '',
                     ),
                   if (snapchat['form_type'] == 'Product')
                     Text('Product: ${snapchat['product_name'] ?? ''}'),
-                  if (snapchat['form_type'] == 'Schedule')
+                  if (snapchat['form_type'] == 'Booking')
                     Text('Event Name: ${snapchat['event_name'] ?? ''}'),
                   // if (snapchat['form_type'] == 'Others')
                   //   Text('Title: ${snapchat['others_title'] ?? ''}'),
@@ -489,7 +459,7 @@ class _FollowupScreenState extends State<FollowupScreen> {
                       ? "Job: Fresher" ?? ''
                       : snapchat['isJobExperienced'] == true
                       ? "Job: Experienced" ?? ''
-                      : 'No Title',
+                      : '',
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -530,7 +500,7 @@ class _FollowupScreenState extends State<FollowupScreen> {
         return const Color(0xFFf9b401);
       case 'Product':
         return const Color(0xFF622fa4);
-      case 'Schedule':
+      case 'Booking':
         return const Color(0xFFf8681a);
       default:
         return const Color(0xFF3754db);
