@@ -16,7 +16,7 @@ import 'package:relie_nquiry/screen/bottombar.dart';
 import '../followup/followup_details.dart';
 import '../followup/followup_screen.dart';
 import '../pages/login_page.dart';
-import '../pages/quotation_page.dart';
+import '../pages/Bill_quotation_page.dart';
 import '../pages/register.dart';
 import '../screen/notification_page.dart';
 import '../screen/splash_screen.dart';
@@ -151,7 +151,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.quotationPage,
-      page: () => QuotationPage(),
+      page: () => BillQuotationPage(),
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 100),
     ),

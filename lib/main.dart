@@ -12,7 +12,7 @@ import 'routes/app_routes.dart';
 
 /// push notification
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin();
 
 /// 🔔 Background message handler
 @pragma('vm:entry-point')
@@ -72,7 +72,7 @@ Future<void> main() async {
 
   //Local notification initialization
   const AndroidInitializationSettings androidInitSettings =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
+  AndroidInitializationSettings('@mipmap/ic_launcher');
 
   final InitializationSettings initSettings = InitializationSettings(
     android: androidInitSettings,
@@ -109,7 +109,7 @@ Future<void> main() async {
 
   // Ask permission
   NotificationSettings settings =
-      await FirebaseMessaging.instance.requestPermission();
+  await FirebaseMessaging.instance.requestPermission();
   print('🔐 Permission granted: ${settings.authorizationStatus}');
 
   await getToken();
@@ -119,12 +119,12 @@ Future<void> main() async {
     await FirebaseMessaging.instance.subscribeToTopic(user.uid);
     print("📩 Subscribed to topic: ${user.uid}");
   }
-///  rotaite of
+  ///  rotaite of
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-/// auto update
+  /// auto update
   if (GetPlatform.isAndroid) {
     InAppUpdate.checkForUpdate().then((updateInfo) {
       if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
@@ -181,37 +181,93 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+// //
+// // // import 'package:flutter/material.dart';
+// // // import 'package:get/get.dart';
+// // //
+// // // import 'package:firebase_core/firebase_core.dart';
+// // // import 'package:relie_nquiry/routes/app_routes.dart';
+// // //
+// // // import 'firebase_options.dart';
+// // // import 'routes/app_pages.dart';
+// // //
+// // // void main() async {
+// // //   WidgetsFlutterBinding.ensureInitialized();
+// // //   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+// // //   runApp(MyApp());
+// // // }
+// // //
+// // // class MyApp extends StatelessWidget {
+// // //   const MyApp({super.key});
+// // //
+// // //   @override
+// // //   Widget build(BuildContext context) {
+// // //     return GetMaterialApp(
+// // //       debugShowCheckedModeBanner: false,
+// // //       title: 'Relie Enquiry',
+// // //       theme: ThemeData(
+// // //         // useMaterial3: true,
+// // //         primarySwatch: Colors.green,
+// // //       ),
+// // //       // home:,
+// // //       initialRoute: Routes.splashScreen,
+// // //       getPages: AppPages.routes,
+// // //     );
+// // //   }
+// // // }
 // import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+// import '22.dart';
+// // import 'package:relie_nquiry/bill_quotation_page.dart'; // இது HomePage-லவே import பண்ணிருப்பீங்க
 //
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:relie_nquiry/routes/app_routes.dart';
-//
-// import 'firebase_options.dart';
-// import 'routes/app_pages.dart';
-//
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+// void main() {
 //   runApp(MyApp());
 // }
 //
 // class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
 //   @override
 //   Widget build(BuildContext context) {
-//     return GetMaterialApp(
+//     return MaterialApp(
 //       debugShowCheckedModeBanner: false,
-//       title: 'Relie Enquiry',
+//       title: 'Relie Nquiry',
 //       theme: ThemeData(
-//         // useMaterial3: true,
-//         primarySwatch: Colors.green,
+//         primarySwatch: Colors.blue,
 //       ),
-//       // home:,
-//       initialRoute: Routes.splashScreen,
-//       getPages: AppPages.routes,
+//       // 👉 App start ஆனதும் HomePage தான் main screen
+//       home: HomePage(),
+//     );
+//   }
+// }
+//
+//
+// class HomePage extends StatefulWidget {
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
+//
+// class _HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Home"),
+//         backgroundColor: Colors.blue,
+//       ),
+//       body: Center(
+//         child: ElevatedButton.icon(
+//           icon: Icon(Icons.receipt_long),
+//           label: Text("Go to Bill & Quotation"),
+//           style: ElevatedButton.styleFrom(
+//             backgroundColor: Colors.blue,
+//             foregroundColor: Colors.white,
+//           ),
+//           onPressed: () {
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(builder: (context) => BillQuotationPage()),
+//             );
+//           },
+//         ),
+//       ),
 //     );
 //   }
 // }
