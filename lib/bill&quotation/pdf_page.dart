@@ -1819,14 +1819,14 @@ import 'package:open_file/open_file.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-class QuotationPage extends StatefulWidget {
+class pdfPage extends StatefulWidget {
   final String? customerName;
   final String? customerMobile;
   final String? customerEmail;
   final List<Map<String, dynamic>>? items;
   final String? documentType; // 'Bill' or 'Quotation'
 
-  const QuotationPage({
+  const pdfPage({
     Key? key,
     this.customerName,
     this.customerMobile,
@@ -1837,10 +1837,10 @@ class QuotationPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<QuotationPage> createState() => _QuotationPageState();
+  State<pdfPage> createState() => _pdfPageState();
 }
 
-class _QuotationPageState extends State<QuotationPage> {
+class _pdfPageState extends State<pdfPage> {
   late String customerName;
   late String customerMobile;
   late String customerEmail;

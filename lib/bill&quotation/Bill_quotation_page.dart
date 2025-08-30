@@ -1,66 +1,11 @@
-// import 'package:flutter/material.dart';
-// import 'package:relie_nquiry/constants/app_colors.dart';
-//
-// class QuotationPage extends StatefulWidget {
-//   const QuotationPage({super.key});
-//
-//   @override
-//   State<QuotationPage> createState() => _QuotationPageState();
-// }
-//
-// class _QuotationPageState extends State<QuotationPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       body: Center(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Image.asset(
-//               height: 150,
-//               //  width: 100,
-//               "asset/image/coming soon.jpg",
-//             ),
-//             Text(
-//               "Quotation",
-//               style: TextStyle(
-//                 color: AppColors.appColor,
-//                 fontWeight: FontWeight.w600,
-//                 fontSize: 22,
-//               ),
-//             ),
-//             Text(
-//               "Coming Soon...",
-//               style: TextStyle(
-//                 color: Colors.grey,
-//                 fontWeight: FontWeight.bold,
-//                 fontSize: 28,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//           Navigator.of(context).pop();
-//         },
-//         elevation: 5,
-//         shape: const CircleBorder(),
-//         backgroundColor: AppColors.appColor,
-//         child: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
-//       ),
-//     );
-//   }
-// }
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:relie_nquiry/22.dart';
-import 'package:relie_nquiry/bill/Quotation.dart';
+import 'package:relie_nquiry/bill&quotation/bill_quotation_list_page.dart';
+import 'package:relie_nquiry/bill&quotation/pdf_page.dart';
 import 'package:relie_nquiry/constants/app_colors.dart';
 import 'package:relie_nquiry/constants/app_constants.dart';
 import 'package:relie_nquiry/constants/app_text_styles.dart';
@@ -382,7 +327,7 @@ class _BillQuotationPageState extends State<BillQuotationPage> {
     CollectionReference ref = FirebaseFirestore.instance
         .collection('subscription')
         .doc(AppConstants.companyName)
-        .collection("bill&Quotation");
+        .collection("Bill&Quotation");
 
     if (existingDocId != null) {
       // 🟢 Edit → update existing doc
@@ -446,7 +391,7 @@ class _BillQuotationPageState extends State<BillQuotationPage> {
     Navigator.of(context)
         .push(
           MaterialPageRoute(
-            builder: (_) => QuotationPage(
+            builder: (_) => pdfPage(
               customerName: customerNameController.text.trim(),
               customerMobile: customerMobileController.text.trim(),
               customerEmail: customerEmailController.text.trim(),

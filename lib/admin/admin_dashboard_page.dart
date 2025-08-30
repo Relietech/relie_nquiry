@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
-import 'package:relie_nquiry/33.dart';
+import 'package:relie_nquiry/bill&quotation/admin_bills_quotation_page.dart';
 import 'package:relie_nquiry/constants/app_colors.dart';
 import 'package:relie_nquiry/constants/app_constants.dart';
 import 'package:relie_nquiry/routes/app_routes.dart';
@@ -135,7 +135,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                             alignmentBegin: Alignment.topLeft,
                             alignmentEnd: Alignment.bottomRight,
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => BillsQuotationsPage(),));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => AdminBillsQuotationsPage(),));
                               // Get.toNamed(Routes.quotationPage);
                             },
                             borderRadius: BorderRadius.only(

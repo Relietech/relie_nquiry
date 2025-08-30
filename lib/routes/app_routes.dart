@@ -21,8 +21,12 @@ class Routes {
   static const profileEdit = '/profileEdit';
   static const userEdit = '/userEdit';
   static const adminEnquiry = '/adminEnquiry';
+  static const scheduleFormPage = '/scheduleFormPage';
   static const adminFollowup = '/adminFollowup';
   static const addEmployee = '/addEmployee';
-  static const quotationPage = '/quotationPage';
-  static const scheduleFormPage = '/scheduleFormPage';
+  ///bill&quotation
+  static const billQuotationListPage = '/billQuotationListPage';
+  static const billQuotationPage = '/billQuotationPage';
+  static const pdfPage = '/pdfPage';
+  static const adminBillQuotation = '/adminBillQuotation';
 }

@@ -9,14 +9,17 @@ import 'package:relie_nquiry/admin/admin_employee_page.dart';
 import 'package:relie_nquiry/admin/edit_user_page.dart';
 import 'package:relie_nquiry/admin/new_emp_create_page.dart';
 import 'package:relie_nquiry/admin/user_details_page.dart';
+import 'package:relie_nquiry/bill&quotation/bill_quotation_list_page.dart';
 import 'package:relie_nquiry/followup/status_page.dart';
 import 'package:relie_nquiry/pages/profile_edit_page.dart';
 import 'package:relie_nquiry/pages/profile_page.dart';
 import 'package:relie_nquiry/screen/bottombar.dart';
+import '../bill&quotation/admin_bills_quotation_page.dart';
+import '../bill&quotation/pdf_page.dart';
 import '../followup/followup_details.dart';
 import '../followup/followup_screen.dart';
 import '../pages/login_page.dart';
-import '../pages/Bill_quotation_page.dart';
+import '../bill&quotation/Bill_quotation_page.dart';
 import '../pages/register.dart';
 import '../screen/notification_page.dart';
 import '../screen/splash_screen.dart';
@@ -149,9 +152,28 @@ class AppPages {
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 100),
     ),
+    /// bill & Quotation
     GetPage(
-      name: Routes.quotationPage,
+      name: Routes.billQuotationPage,
       page: () => BillQuotationPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 100),
+    ),  GetPage(
+      name: Routes.billQuotationListPage,
+      page: () => BillQuotationListPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 100),
+    ),
+
+    GetPage(
+      name: Routes.adminBillQuotation,
+      page: () => AdminBillsQuotationsPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 100),
+    ),
+    GetPage(
+      name: Routes.pdfPage,
+      page: () => pdfPage(),
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 100),
     ),

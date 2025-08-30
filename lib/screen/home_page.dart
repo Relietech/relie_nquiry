@@ -1083,7 +1083,7 @@ class _HomePageState extends State<HomePage> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.quotationPage);
+                              Get.toNamed(Routes.billQuotationPage);
                             },
                             child: Container(
                               alignment: Alignment.topCenter,

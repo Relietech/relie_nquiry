@@ -2,7 +2,7 @@
 // import 'package:flutter/services.dart';
 // import 'package:get/get.dart';
 // import 'package:intl/intl.dart';
-// import 'package:relie_nquiry/bill/Quotation.dart';
+// import 'package:relie_nquiry/bill/pdf_page.dart';
 // import 'package:relie_nquiry/constants/app_button.dart';
 // import 'package:relie_nquiry/constants/app_colors.dart';
 // import 'package:relie_nquiry/constants/app_constants.dart';
@@ -784,7 +784,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:relie_nquiry/bill/Quotation.dart';
+import 'package:relie_nquiry/bill&quotation/pdf_page.dart';
 import 'package:relie_nquiry/constants/app_button.dart';
 import 'package:relie_nquiry/constants/app_colors.dart';
 import 'package:relie_nquiry/constants/app_constants.dart';
@@ -970,7 +970,7 @@ class _NewFormPageState extends State<NewFormPage> {
     // Navigate to QuotationPage with the data
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => QuotationPage(
+        builder: (context) => pdfPage(
           customerName: customerNameController.text.trim(),
           customerMobile: customerMobileController.text.trim(),
           customerEmail: customerEmailController.text.trim(),
@@ -1145,7 +1145,7 @@ class _NewFormPageState extends State<NewFormPage> {
                         InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => QuotationPage(),
+                                builder: (context) => pdfPage(),
                               ));
                             },
                             child: Icon(Icons.add)

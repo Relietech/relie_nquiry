@@ -122,7 +122,7 @@ class _AdminFollowupPageState extends State<AdminFollowupPage> {
                             'follow_up_date',
                             isGreaterThanOrEqualTo: Timestamp.fromDate(
                               DateTime.now()
-                                  .add(const Duration(days: 1))
+                                  .add(const Duration(days: 0))
                                   .copyWith(
                                     hour: 0,
                                     minute: 0,

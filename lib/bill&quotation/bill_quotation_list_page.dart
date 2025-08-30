@@ -8,7 +8,7 @@
 //
 // import 'package:relie_nquiry/pages/Bill_quotation_page.dart';
 //
-// import 'bill/Quotation.dart'; // Import your main page
+// import 'bill/pdf_page.dart'; // Import your main page
 //
 // class BillQuotationListPage extends StatefulWidget {
 //   const BillQuotationListPage({super.key});
@@ -478,9 +478,9 @@ import 'package:relie_nquiry/constants/app_colors.dart';
 import 'package:relie_nquiry/constants/app_text_styles.dart';
 import 'package:relie_nquiry/constants/app_constants.dart';
 
-import 'package:relie_nquiry/pages/Bill_quotation_page.dart';
+import 'package:relie_nquiry/bill&quotation/Bill_quotation_page.dart';
 
-import 'bill/Quotation.dart'; // Import your main page
+import 'pdf_page.dart'; // Import your main page
 
 class BillQuotationListPage extends StatefulWidget {
   const BillQuotationListPage({super.key});
@@ -750,7 +750,7 @@ class _BillQuotationListPageState extends State<BillQuotationListPage> {
     return FirebaseFirestore.instance
         .collection('subscription')
         .doc(AppConstants.companyName)
-        .collection('bill&Quotation')
+        .collection('Bill&Quotation')
         .where('employeeUid', isEqualTo: employeeUid)
         .snapshots();
   }
@@ -961,7 +961,7 @@ class _BillQuotationListPageState extends State<BillQuotationListPage> {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => QuotationPage(
+        builder: (context) => pdfPage(
           // Your existing QuotationPage
           customerName: data['customerName'] ?? '',
           customerMobile: data['customerMobile'] ?? '',
